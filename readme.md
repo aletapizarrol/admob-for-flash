@@ -29,6 +29,7 @@ or oc.You not need Admob ANE for ios and Admob ANE for android Separate version 
 The Google Mobile Ads SDK is the latest generation in Google mobile advertising featuring refined ad formats and streamlined APIs for access to mobile ad networks and advertising solutions. The SDK enables Air mobile app developers to maximize their monetization in native mobile apps.
 
 
+64bit support is in developing
 
 
 ## Admob ANE For Air Features
