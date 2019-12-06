@@ -29,7 +29,7 @@ or oc.You not need Admob ANE for ios and Admob ANE for android Separate version 
 The Google Mobile Ads SDK is the latest generation in Google mobile advertising featuring refined ad formats and streamlined APIs for access to mobile ad networks and advertising solutions. The SDK enables Air mobile app developers to maximize their monetization in native mobile apps.
 
 
-64bit support is in developing
+
 
 
 ## Admob ANE For Air Features
@@ -42,7 +42,7 @@ The Google Mobile Ads SDK is the latest generation in Google mobile advertising 
 - [x] Support Air SDK 32 and Air 33
 - [x] Support IOS 8 to ios 13 
 - [x] Very simple API
-- [x] Support android x64,x86,arm
+- [x] Support android x64,x86,arm，and 32,64 bit support
 
 
 ## Quick Start
@@ -160,7 +160,7 @@ simple example
 				<string>2</string>
 			</array>
 				<key>MinimumOSVersion</key>
-        <string>8.0</string>
+        <string>9.0</string>
 			<key>NSAppTransportSecurity</key>
 <dict>
     <key>NSAllowsArbitraryLoads</key>
@@ -183,21 +183,30 @@ Please replace ca-app-pub-3940256099942544~3347511713 with your admob ID
 <android>
         <manifestAdditions><![CDATA[
 			<manifest android:installLocation="auto">
-			    <uses-permission android:name="android.permission.INTERNET"/>
-			    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-			    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-			     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-			     <application>
- <meta-data android:name="com.google.android.gms.version"
-        android:value="@integer/google_play_services_version" />
-			  	   <activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" android:theme="@android:style/Theme.Translucent"/>
+					<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+					<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+					<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+					<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+					<uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+					 <application>
+						<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+					      <activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" android:theme="@android:style/Theme.Translucent"/>
+						<receiver android:name="com.google.android.gms.measurement.AppMeasurementReceiver" android:enabled="true" android:exported="false" ></receiver>
+					       <receiver android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver" android:enabled="true" android:exported="true" android:permission="android.permission.INSTALL_PACKAGES" >
+							<intent-filter>
+							    <action android:name="com.android.vending.INSTALL_REFERRER" />
+							</intent-filter>
+					        </receiver>
 
- <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
+					        <service android:name="com.google.android.gms.measurement.AppMeasurementService" android:enabled="true" android:exported="false" />
+					        <service android:name="com.google.android.gms.measurement.AppMeasurementJobService" android:enabled="true" android:exported="false" android:permission="android.permission.BIND_JOB_SERVICE" />
+					        <receiver android:name="com.google.android.gms.measurement.AppMeasurementReceiver" android:enabled="true" android:exported="false" ></receiver>
 
-			     </application>
+					        <service android:name="com.google.android.gms.measurement.AppMeasurementService" android:enabled="true" android:exported="false" />
+						  <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-3940256099942544~3347511713"/>
+					</application>
 			</manifest>
+
 		]]></manifestAdditions>
     </android>
 ```

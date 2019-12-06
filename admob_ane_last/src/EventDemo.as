@@ -5,17 +5,18 @@ package
 	
 	import so.cuo.platform.admob.Admob;
 	import so.cuo.platform.admob.AdmobEvent;
+	import so.cuo.platform.admob.ExtraParameter;
 
 	public class EventDemo extends Sprite
 	{
-		var admob:Admob= Admob.getInstance();
+		private var admob:Admob= Admob.getInstance();
 
 		public function EventDemo()
 		{
 			super();
 			if (admob.supportDevice)
 			{
-				admob.setKeys("your admob banner id");//Interstitial and banner use the same key
+				admob.initAdmobSDK(new ExtraParameter());//Interstitial and banner use the same key
 				admob.addEventListener(AdmobEvent.onBannerFailedReceive, onAdReceived);
 				admob.addEventListener(AdmobEvent.onBannerReceive, onAdReceived);
 			}
@@ -24,14 +25,13 @@ package
 
 		protected function clickStage(event:MouseEvent):void
 		{
-			admob.showBannerAbsolute(Admob.SMART_BANNER, 0, 10);
 			if (admob.isInterstitialReady())
 			{
-				admob.showInterstitial();
+				admob.showVideo();
 			}
 			else
 			{
-				admob.cacheInterstitial();
+				admob.cacheVideo("your_admob_video_id");
 			}
 		}
 

@@ -24,6 +24,8 @@ package
 			check.height=32;
 			check.addEventListener(MouseEvent.CLICK,onClick);
 			addChild(check);
+			check.border=true;
+			check.background=true;
 			return check;
 		}
 		protected function onClick(event:MouseEvent):void

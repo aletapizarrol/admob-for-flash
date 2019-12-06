@@ -1,3 +1,8 @@
+### admob ane 201901206
+1. support ios 13,android new version,air 33
+2.support arm 64,x86
+3.upgrade admob sdk
+
 ### admob ane 20190101
 1.add support for air 32
 2.support define id for each banner

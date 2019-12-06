@@ -4,17 +4,19 @@ package
 	
 	import so.cuo.platform.admob.Admob;
 	import so.cuo.platform.admob.AdmobEvent;
+	import so.cuo.platform.admob.ExtraParameter;
 	
 	public class InterstitialDemo extends Sprite
 	{
-		var admob:Admob= Admob.getInstance();
+		private var admob:Admob= Admob.getInstance();
 		public function InterstitialDemo()
 		{
 			super();
 			if(admob.supportDevice){
-				admob.setKeys("your banner id","your institial id");
-				admob.addEventListener(AdmobEvent.onInterstitialReceive,onAdReceived);
-				admob.cacheInterstitial();
+				admob.initAdmobSDK(new ExtraParameter());
+				admob.addEventListener(AdmobEvent.onBannerFailedReceive, onAdReceived);
+				admob.addEventListener(AdmobEvent.onBannerReceive, onAdReceived);
+				admob.cacheInterstitial("your_admob_Interstitial_id");
 			}
 		}
 		protected function onAdReceived(event:AdmobEvent):void
